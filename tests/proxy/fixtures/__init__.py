@@ -1,0 +1,21 @@
+from tests.proxy.fixtures.fixtures import (
+    HTML_FULL,
+    HTML_FULL_MODIFIED,
+    HTML_SIMPLE,
+    HTML_SIMPLE_MODIFIED,
+    HTML_WITH_LINKS_NO_TEXT,
+    HTML_WITH_LINKS_NO_TEXT_MODIFIED,
+    TEXT,
+    TEXT_MODIFIED,
+)
+
+__all__ = [
+    "HTML_SIMPLE",
+    "HTML_SIMPLE_MODIFIED",
+    "HTML_FULL",
+    "HTML_FULL_MODIFIED",
+    "HTML_WITH_LINKS_NO_TEXT",
+    "HTML_WITH_LINKS_NO_TEXT_MODIFIED",
+    "TEXT",
+    "TEXT_MODIFIED",
+]
