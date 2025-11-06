@@ -1,6 +1,7 @@
 import re
 
 from bs4 import BeautifulSoup
+
 from proxy.url_modifier import to_relative_if_internal
 
 TAGS_ATTRS_MAPPING = {
