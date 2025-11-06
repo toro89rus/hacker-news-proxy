@@ -1,7 +1,6 @@
 import re
 
 from bs4 import BeautifulSoup
-
 from proxy.url_modifier import to_relative_if_internal
 
 TAGS_ATTRS_MAPPING = {
@@ -15,12 +14,13 @@ TAGS_ATTRS_MAPPING = {
     "form": "action",
 }
 
+EXCLUDE_TAGS = {"script", "style", "code", "pre", "textarea"}
+
 
 def modify_html(html: str, target_url: str, symbol: str, word_len: int) -> str:
     """Modify HTML replacing all internal target url link to relative,
     add SYMBOL to all words with length of WORD_LENGTH in HTML text
     """
-
     soup = BeautifulSoup(html, "lxml")
     modify_links(soup, target_url)
     modify_strings(soup, symbol, word_len)
@@ -41,6 +41,8 @@ def modify_links(soup, target_url):
 def modify_strings(soup, symbol, word_len):
     """Modify all text in BS4 object"""
     for text_block in soup.find_all(string=True):
+        if text_block.parent.name in EXCLUDE_TAGS:
+            continue
         modified_text_block = modify_string(text_block, symbol, word_len)
         text_block.replace_with(modified_text_block)
 
